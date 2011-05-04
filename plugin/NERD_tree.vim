@@ -1,0 +1,1 @@
+/home/jesvs/Downloads/nerdtree/plugin/NERD_tree.vim
