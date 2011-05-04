@@ -16,3 +16,6 @@
 [submodule "bundle/vim-coffee-script"]
 	path = bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "bundle/snippetsEmu"]
+	path = bundle/snippetsEmu
+	url = https://github.com/vim-scripts/snippetsEmu.git
