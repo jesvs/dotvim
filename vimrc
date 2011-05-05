@@ -3,16 +3,18 @@ set nocompatible
 
 let mapleader = ","
 
+filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
-" solarized options
 set t_Co=256
-set background=light
-let g:solarized_termcolors=256
-colorscheme solarized
 
-let coffee_compile_on_save = 1
+" solarized options
+" set background=light
+" let g:solarized_termcolors=256
+" colorscheme solarized
+
+let coffee_compile_on_save = 0
 
 if &t_Co > 2 || has("gui_running")
   syntax on
@@ -20,7 +22,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 if &t_Co >= 256 || has("gui_running")
-  " colorscheme jellybeans
+  colorscheme summerfruit256
   if has("gui_gtk2")
     set guifont=Pragmata\ TT\ 12
   endif
@@ -32,7 +34,7 @@ set expandtab
 set formatprg=par
 set guioptions-=T   " remove toolbar
 set guioptions-=m   " remove menu bar
-set guioptions-=r   " remove right-hand scroll bar
+" set guioptions-=r   " remove right-hand scroll bar
 set hidden          " hides buffers instead of closing them
 set history=1000
 set ignorecase      " ignore case when searching
@@ -46,14 +48,14 @@ set nowrap
 set number          " always show line numbers
 set pastetoggle=<F2>
 set ruler           " always display the current cursor position
-set shiftwidth=4
+set shiftwidth=2
 set showcmd         " displays incomplete command
 set showmatch       " show matching parenthesis
 set smartcase       " ignore case when pattern is all lowercase
 set smartindent
 set smarttab        " insert tabs on the start of a line according to shiftwidth
 set spelllang=es
-set tabstop=4
+set tabstop=2
 set title
 set undolevels=1000
 " set noerrorbells
