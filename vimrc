@@ -1,24 +1,29 @@
 " This must be first, becuase it changes other options as side effect
 set nocompatible
-set t_Co=256
 
 let mapleader = ","
 
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
-let coffee_compile_on_save = 1
+" solarized options
+set t_Co=256
+set background=light
+let g:solarized_termcolors=256
+colorscheme solarized
 
-if &t_Co >= 256 || has("gui_running")
-  colorscheme jellybeans
-  if has("gui_gtk2")
-    set guifont=Pragmata\ TT\ 12
-  endif
-endif
+let coffee_compile_on_save = 1
 
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
+endif
+
+if &t_Co >= 256 || has("gui_running")
+  " colorscheme jellybeans
+  if has("gui_gtk2")
+    set guifont=Pragmata\ TT\ 12
+  endif
 endif
 
 set backspace=indent,eol,start
@@ -41,14 +46,14 @@ set nowrap
 set number          " always show line numbers
 set pastetoggle=<F2>
 set ruler           " always display the current cursor position
-set shiftwidth=2
+set shiftwidth=4
 set showcmd         " displays incomplete command
 set showmatch       " show matching parenthesis
 set smartcase       " ignore case when pattern is all lowercase
 set smartindent
 set smarttab        " insert tabs on the start of a line according to shiftwidth
 set spelllang=es
-set tabstop=2
+set tabstop=4
 set title
 set undolevels=1000
 " set noerrorbells
@@ -100,6 +105,7 @@ endif " has("autocmd")
 "   autocmd bufwritepost .vimrc source $MYVIMRC
 " endif
 
+" zen coding options
 let g:user_zen_settings = {
 \  'indentation': '  ',
 \  'perl': {
