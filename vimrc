@@ -22,9 +22,9 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 if &t_Co >= 256 || has("gui_running")
-  colorscheme summerfruit256
+  colorscheme clarity
   if has("gui_gtk2")
-    set guifont=Pragmata\ TT\ 12
+    set guifont=Menlo\ 11
   endif
 endif
 
@@ -33,15 +33,15 @@ set copyindent      " copy the previous indentation on autoindenting
 set expandtab
 set formatprg=par
 set guioptions-=T   " remove toolbar
-set guioptions-=m   " remove menu bar
+"set guioptions-=m   " remove menu bar
 " set guioptions-=r   " remove right-hand scroll bar
-set hidden          " hides buffers instead of closing them
+" set hidden          " hides buffers instead of closing them
 set history=1000
 set ignorecase      " ignore case when searching
 set incsearch       " interactive search
 set linebreak
 set list
-set listchars=tab:>»,trail:·,extends:…,nbsp:·
+set listchars=tab:>-,trail:·,extends:…,nbsp:·
 set nobackup
 set noswapfile
 set nowrap
@@ -58,12 +58,24 @@ set spelllang=es
 set tabstop=2
 set title
 set undolevels=1000
-" set noerrorbells
+set noerrorbells
 " set visualbell
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
-cmap w!! w !sudo tee % > /dev/null
+nmap <F12> :set guifont=Menlo\ 20<CR>
+nmap <F11> :set guifont=Menlo\ 11<CR>
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
 nnoremap ; :
+cmap w!! w !sudo tee % > /dev/null
 nmap <silent> <leader>tw :ToggleWord<CR>
 nmap <silent> <leader>ev :tabedit $MYVIMRC<CR>
 nmap <silent> ,/ :nohlsearch<CR>
@@ -121,6 +133,9 @@ let g:user_zen_settings = {
 \  }
 \}
 
-let g:user_zen_expandabbr_key='<c-e>'
-let g:use_zen_complete_tag = 1
+let g:user_zen_expandabbr_key='<C-o>'
+let g:use_zen_complete_tag=1
 
+" RSpec function hilight
+autocmd BufRead *_spec.rb syn keyword rubyRspec describe context it specify it_should_behave_like before after setup subject
+highlight def link rubyRspec Function

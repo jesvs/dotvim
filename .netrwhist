@@ -1,8 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/jesvs/Projects/goratem'
-let g:netrw_dirhist_2='/home/jesvs/public_html/goratem'
-let g:netrw_dirhist_3='/home/jesvs/Sites/jesvs/papers/apps.pdos.lcs.mit.edu/scicache'
-let g:netrw_dirhist_4='/home/jesvs/Sites/jesvs/papers'
-let g:netrw_dirhist_5='/home/jesvs/.config/audacious'
-let g:netrw_dirhist_6='/home/jesvs/.vim'
+let g:netrw_dirhist_cnt =0
