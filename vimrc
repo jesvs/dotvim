@@ -22,7 +22,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 if &t_Co >= 256 || has("gui_running")
-  colorscheme clarity
+  colorscheme twilight
   if has("gui_gtk2")
     set guifont=Menlo\ 11
   endif
@@ -75,10 +75,20 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 nnoremap ; :
-cmap w!! w !sudo tee % > /dev/null
+cmap w!! w !sudo tee % > /dev/null<CR>
+cmap wc w !haml % ${'%'/haml/html}<CR>
 nmap <silent> <leader>tw :ToggleWord<CR>
 nmap <silent> <leader>ev :tabedit $MYVIMRC<CR>
 nmap <silent> ,/ :nohlsearch<CR>
+
+function! HamlCompile()
+  let cmdtype = getcmdtype()
+  if cmdtype == ':'
+    " compile haml and save it as html
+    w
+    !haml % test.html
+  endif
+endfunction
 
 if has('mouse')
   set mouse=a
@@ -99,7 +109,7 @@ if has("autocmd")
   autocmd FileType text setlocal textwidth=78
   autocmd FileType python set expandtab
   autocmd FileType html,xml set listchars-=tab:>.
-
+  autocmd FileType haml,scss setlocal noexpandtab list listchars=tab:››
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
