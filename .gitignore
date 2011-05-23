@@ -1,3 +1,4 @@
 rakefile-vim-install
+bundle/command-t
 .VimballRecord
 .netrwhist
