@@ -34,3 +34,6 @@
 [submodule "bundle/The-NERD-Commenter"]
 	path = bundle/The-NERD-Commenter
 	url = https://github.com/vim-scripts/The-NERD-Commenter.git
+[submodule "bundle/scss-syntax"]
+	path = bundle/scss-syntax
+	url = https://github.com/cakebaker/scss-syntax.vim.git
