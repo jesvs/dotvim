@@ -41,7 +41,7 @@ set ignorecase      " ignore case when searching
 set incsearch       " interactive search
 set linebreak
 set list
-set listchars=tab:>-,trail:·,extends:…,nbsp:·
+set listchars=tab:››,trail:·,extends:…,nbsp:·
 set nobackup
 set noswapfile
 set nowrap
@@ -108,8 +108,9 @@ if has("autocmd")
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
   autocmd FileType python set expandtab
-  autocmd FileType html,xml set listchars-=tab:>.
+  autocmd FileType html,xml set listchars-=tab:››
   autocmd FileType haml,scss setlocal noexpandtab list listchars=tab:››
+  autocmd FileType fstab setlocal noexpandtab list listchars=tab:››
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
