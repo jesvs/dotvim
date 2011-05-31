@@ -22,20 +22,14 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 if &t_Co >= 256 || has("gui_running")
-  colorscheme twilight
-  if has("gui_gtk2")
-    set guifont=Menlo\ 11
-  endif
+  colorscheme molokai-moi
 endif
 
 set backspace=indent,eol,start
 set copyindent      " copy the previous indentation on autoindenting
-set expandtab
+set noexpandtab
 set formatprg=par
-set guioptions-=T   " remove toolbar
-"set guioptions-=m   " remove menu bar
-" set guioptions-=r   " remove right-hand scroll bar
-" set hidden          " hides buffers instead of closing them
+"set hidden          " hides buffers instead of closing them
 set history=1000
 set ignorecase      " ignore case when searching
 set incsearch       " interactive search
@@ -61,9 +55,6 @@ set undolevels=1000
 set noerrorbells
 " set visualbell
 set wildignore=*.swp,*.bak,*.pyc,*.class
-
-nmap <F12> :set guifont=Menlo\ 20<CR>
-nmap <F11> :set guifont=Menlo\ 11<CR>
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -107,10 +98,14 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType python set expandtab
-  autocmd FileType html,xml set listchars-=tab:››
-  autocmd FileType haml,scss setlocal noexpandtab list listchars=tab:››
-  autocmd FileType fstab setlocal noexpandtab list listchars=tab:››
+  "autocmd FileType python set expandtab
+  "autocmd FileType html,xml set listchars-=tab:››
+  autocmd FileType haml,scss,sass setlocal noexpandtab list
+  "autocmd FileType fstab setlocal noexpandtab list listchars=tab:››
+  autocmd BufRead *_spec.rb syn keyword rubyRspec describe context it specify it_should_behave_like before after setup subject
+  autocmd BufReadPost Gemfile,.autotest,config.ru setlocal syntax=ruby
+	"autocmd BufReadPost .autotest setlocal syntax=ruby
+  highlight def link rubyRspec Function
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -147,6 +142,11 @@ let g:user_zen_settings = {
 let g:user_zen_expandabbr_key='<C-o>'
 let g:use_zen_complete_tag=1
 
-" RSpec function hilight
-autocmd BufRead *_spec.rb syn keyword rubyRspec describe context it specify it_should_behave_like before after setup subject
-highlight def link rubyRspec Function
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
