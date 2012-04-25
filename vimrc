@@ -35,7 +35,7 @@ set ignorecase      " ignore case when searching
 set incsearch       " interactive search
 set linebreak
 set list
-set listchars=tab:››,trail:·,extends:…,nbsp:·
+"set listchars=tab:››,trail:·,extends:…,nbsp:·
 set nobackup
 set noswapfile
 set nowrap
