@@ -34,7 +34,7 @@ set history=1000
 set ignorecase      " ignore case when searching
 set incsearch       " interactive search
 set linebreak
-set list
+set nolist
 "set listchars=tab:››,trail:·,extends:…,nbsp:·
 set nobackup
 set noswapfile
