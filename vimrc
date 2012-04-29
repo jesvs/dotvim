@@ -150,3 +150,16 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+au BufWritePost *.haml call HamlMake()
+
+" Inspired by Mark Hansen's python dependent function
+" http://markhansen.co.nz/autocompiling-haml/
+" Create an empty .autohaml to auto compile your haml files on save
+function! HamlMake()
+	if filereadable(".autohaml")
+		let hamlinput = expand('%:p')
+		let htmloutput = substitute(hamlinput, ".haml", ".html", "")
+		execute 'silent !haml % '.htmloutput
+	endif
+endfunction
