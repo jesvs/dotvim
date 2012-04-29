@@ -40,7 +40,7 @@ set nobackup
 set noswapfile
 set nowrap
 set number          " always show line numbers
-set pastetoggle=<F2>
+"set pastetoggle=<F2>
 set ruler           " always display the current cursor position
 set shiftwidth=2
 set showcmd         " displays incomplete command
@@ -100,7 +100,7 @@ if has("autocmd")
   autocmd FileType text setlocal textwidth=78
   "autocmd FileType python set expandtab
   "autocmd FileType html,xml set listchars-=tab:››
-  autocmd FileType haml,scss,sass setlocal noexpandtab list
+  autocmd FileType haml,scss,sass setlocal noexpandtab "list
   "autocmd FileType fstab setlocal noexpandtab list listchars=tab:››
   autocmd BufRead *_spec.rb syn keyword rubyRspec describe context it specify it_should_behave_like before after setup subject
   autocmd BufReadPost Gemfile,.autotest,config.ru setlocal syntax=ruby
