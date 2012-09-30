@@ -1,5 +1,8 @@
 " This must be first, becuase it changes other options as side effect
 set nocompatible
+set laststatus=2
+set encoding=utf-8
+let g:Powerline_symbols='fancy'
 
 let mapleader = ","
 
@@ -152,14 +155,22 @@ function! <SID>SynStack()
 endfunc
 
 au BufWritePost *.haml call HamlMake()
-
 " Inspired by Mark Hansen's python dependent function
 " http://markhansen.co.nz/autocompiling-haml/
 " Create an empty .autohaml to auto compile your haml files on save
 function! HamlMake()
-	if filereadable(".autohaml")
+	if filereadable(expand('%:p:h')."/.autohaml")
 		let hamlinput = expand('%:p')
 		let htmloutput = substitute(hamlinput, ".haml", ".html", "")
 		execute 'silent !haml % '.htmloutput
+	endif
+endfunction
+
+au BufWritePost *.scss call ScssMake()
+function! ScssMake()
+	if filereadable(expand('%:p:h')."/.autoscss")
+		let scssinput = expand('%:p')
+		let cssoutput = substitute(scssinput, ".scss", ".css", "")
+		execute 'silent !scss % '.cssoutput
 	endif
 endfunction
