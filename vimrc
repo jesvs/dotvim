@@ -2,6 +2,19 @@
 set nocompatible
 set laststatus=2
 set encoding=utf-8
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+
+
+
 let g:Powerline_symbols='fancy'
 
 let mapleader = ","
@@ -27,6 +40,7 @@ endif
 if &t_Co >= 256 || has("gui_running")
   colorscheme molokai-moi
 endif
+
 
 set backspace=indent,eol,start
 set copyindent      " copy the previous indentation on autoindenting
@@ -87,6 +101,11 @@ endfunction
 if has('mouse')
   set mouse=a
 endif
+"if has("gui_running")
+"	set mouse=a
+"else
+"	set mouse-=a
+"endif
 
 if has("autocmd")
   " Enable file type detection.
