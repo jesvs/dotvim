@@ -12,16 +12,22 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on github
-
-
+Bundle 'Align'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'cakebaker/scss-syntax'
+Bundle 'godlygeek/tabular'
+Bundle 'toggle_words'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
 
 let g:Powerline_symbols='fancy'
 
 let mapleader = ","
 
 filetype off
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
 
 set t_Co=256
 
@@ -41,7 +47,6 @@ if &t_Co >= 256 || has("gui_running")
   colorscheme molokai-moi
 endif
 
-
 set backspace=indent,eol,start
 set copyindent      " copy the previous indentation on autoindenting
 set noexpandtab
@@ -57,7 +62,7 @@ set nobackup
 set noswapfile
 set nowrap
 set number          " always show line numbers
-"set pastetoggle=<F2>
+set pastetoggle=<F2>
 set ruler           " always display the current cursor position
 set shiftwidth=2
 set showcmd         " displays incomplete command
