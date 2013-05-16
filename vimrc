@@ -9,17 +9,24 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
-"
-" original repos on github
 Bundle 'Align'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'cakebaker/scss-syntax'
+Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'godlygeek/tabular'
-Bundle 'toggle_words'
+Bundle 'toggle_words.vim'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
+Bundle 'pangloss/vim-javascript'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'groenewege/vim-less'
+Bundle 'kien/ctrlp.vim'
+Bundle 'jiangmiao/auto-pairs'
+Bundle 'UltiSnips'
+Bundle 'goldfeld/vim-seek'
+Bundle 'scrooloose/syntastic'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'slim-template/vim-slim'
 
 let g:Powerline_symbols='fancy'
 
@@ -41,9 +48,6 @@ let coffee_compile_on_save = 0
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-endif
-
-if &t_Co >= 256 || has("gui_running")
   colorscheme molokai-moi
 endif
 
@@ -76,16 +80,23 @@ set title
 set undolevels=1000
 set noerrorbells
 " set visualbell
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.db
 
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
+nnoremap <up>    <nop>
+nnoremap <down>  <nop>
+nnoremap <left>  <nop>
 nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
+inoremap <up>    <nop>
+inoremap <down>  <nop>
+inoremap <left>  <nop>
 inoremap <right> <nop>
+
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+
+nmap <CR> :write<CR>
 
 nnoremap ; :
 cmap w!! w !sudo tee % > /dev/null<CR>
@@ -93,6 +104,7 @@ cmap wc w !haml % ${'%'/haml/html}<CR>
 nmap <silent> <leader>tw :ToggleWord<CR>
 nmap <silent> <leader>ev :tabedit $MYVIMRC<CR>
 nmap <silent> ,/ :nohlsearch<CR>
+nmap <silent> <leader>== :Tabularize/=/
 
 function! HamlCompile()
   let cmdtype = getcmdtype()
