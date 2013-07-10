@@ -9,87 +9,155 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-Bundle 'Align'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'toggle_words.vim'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'pangloss/vim-javascript'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'groenewege/vim-less'
-Bundle 'kien/ctrlp.vim'
-Bundle 'jiangmiao/auto-pairs'
+" tools
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/syntastic'
 Bundle 'UltiSnips'
 Bundle 'goldfeld/vim-seek'
-Bundle 'scrooloose/syntastic'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'jiangmiao/auto-pairs'
+Bundle 'kien/ctrlp.vim'
+
+Bundle 'Align'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'godlygeek/tabular'
+Bundle 'toggle_words.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+
+" templating
+"Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'tpope/vim-haml'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'groenewege/vim-less'
 Bundle 'slim-template/vim-slim'
 
-let g:Powerline_symbols='fancy'
+" javascript
+Bundle 'pangloss/vim-javascript'
+"Bundle 'othree/javascript-libraries-syntax.vim'
+Bundle 'guileen/vim-node'
+Bundle 'marijnh/tern_for_vim'
+"Bundle 'myhere/vim-nodejs-complete'
 
-let mapleader = ","
+" theme
+Bundle 'nanotech/jellybeans.vim'
+
+"autocmd CursorMovedI * if pumvisible() == 0|silent! pclose|endif
+"autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+"let g:ycm_key_list_select_completion=['<C-TAB>','<Down>']
+"let g:ycm_key_list_previous_completion=['<C-S-TAB>','<Up>']
+"let g:SuperTabDefaultCompletionType='<C-Tab>'
+let g:UltiSnipsExpandTrigger='<C-SPACE>'
+
+let g:ctrlp_map = '<c-p>'
+
+let g:Powerline_symbols='fancy'
+"let g:used_javascript_libs='jquery'
+"let g:nodejs_complete_config={'js_compl_fn': 'jscomplete#CompleteJS','max_node_compl_len':15}
+let mapleader=","
 
 filetype off
-"call pathogen#helptags()
-"call pathogen#runtime_append_all_bundles()
 
 set t_Co=256
 
-" solarized options
-" set background=light
-" let g:solarized_termcolors=256
-" colorscheme solarized
-
 let coffee_compile_on_save = 0
 
+" theme
+set background=dark
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-  colorscheme molokai-moi
+  colorscheme jellybeans
 endif
 
-set backspace=indent,eol,start
-set copyindent      " copy the previous indentation on autoindenting
-set noexpandtab
+if has("gui_gtk2")
+	set guifont=Menlo\ for\ Powerline\ 12
+elseif has ("gui_macvim")
+	set guifont=Menlo\ for\ Powerline\ 12
+elseif has ("gui_win32")
+	set guifont=Menlo\ for\ Powerline:h12
+end
+
+"set backspace=indent,eol,start
+set backspace=2              " ident,eol,start
+set copyindent               " copy the previous indentation on autoindenting
 set formatprg=par
-"set hidden          " hides buffers instead of closing them
+set hidden                   " hides buffers instead of closing them
 set history=1000
-set ignorecase      " ignore case when searching
-set incsearch       " interactive search
+set fileformats=unix,dos,mac
+set iskeyword+=_,$,@,%,#,-   " none of these should be word dividers
+set ignorecase               " ignore case when searching
+set incsearch                " interactive search
 set linebreak
 set nolist
-"set listchars=tab:››,trail:·,extends:…,nbsp:·
 set nobackup
 set noswapfile
 set nowrap
-set number          " always show line numbers
+set number                   " always show line numbers
 set pastetoggle=<F2>
-set ruler           " always display the current cursor position
-set shiftwidth=2
-set showcmd         " displays incomplete command
-set showmatch       " show matching parenthesis
-set smartcase       " ignore case when pattern is all lowercase
+set ruler                    " always display the current cursor position
+set showcmd                  " displays incomplete command
+set showmatch                " show matching parenthesis
+set matchtime=5
+set smartcase                " ignore case when pattern is all lowercase
 set smartindent
-set smarttab        " insert tabs on the start of a line according to shiftwidth
 set spelllang=es
+
+" indenting
 set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set noexpandtab
+set smarttab                 " insert tabs on the start of a line, spaces everyewhere else
+set cindent
+
+" folding
+set foldenable
+set foldmethod=indent
+set foldlevel=100
+set foldopen-=search
+set foldopen-=undo
+
 set title
 set undolevels=1000
 set noerrorbells
+"set cmdheight=1
 " set visualbell
-set wildignore=*.swp,*.bak,*.pyc,*.class,*.db
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.db,.git,.svn
 
-nnoremap <up>    <nop>
-nnoremap <down>  <nop>
-nnoremap <left>  <nop>
-nnoremap <right> <nop>
-inoremap <up>    <nop>
-inoremap <down>  <nop>
-inoremap <left>  <nop>
-inoremap <right> <nop>
+" do not redraw while running macros (much faster) (LazyRedraw)
+set lazyredraw
+" number of pixel lines inserted between characters
+set linespace=0
+" command-line completion operates in an enhanced mode
+set wildmenu
+" allow backspace and cursor keys to cross line boundaries
+set whichwrap+=<,>,h,l
+" shortens messages to avoid 'press a key' prompt
+set shortmess=atI
+" tell us when any line is changed via : commands
+set report=0
+" make the splitters between windows be blank
+" messes powerline
+"set fillchars=vert:\ ,stl:\ ,stlnc:\
+" Minimal number of screen lines to keep above and below the cursor
+set scrolloff=8
+
+" tab switching with arrows
+map <c-right> <ESC>gt<RETURN>
+map <c-left> <ESC>gT<RETURN>
+map <right> <ESC>:bnext<RETURN>
+map <left> <ESC>:bprevious<RETURN>
+
+"nnoremap <up>    <nop>
+"nnoremap <down>  <nop>
+"nnoremap <left>  <nop>
+"nnoremap <right> <nop>
+"inoremap <up>    <nop>
+"inoremap <down>  <nop>
+"inoremap <left>  <nop>
+"inoremap <right> <nop>
 
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
@@ -118,11 +186,6 @@ endfunction
 if has('mouse')
   set mouse=a
 endif
-"if has("gui_running")
-"	set mouse=a
-"else
-"	set mouse-=a
-"endif
 
 if has("autocmd")
   " Enable file type detection.
@@ -155,14 +218,13 @@ if has("autocmd")
   \   exe "normal! g`\"" |
   \ endif
 
+  " messes with powerline
+  "autocmd bufwritepost .vimrc source $MYVIMRC
+
   augroup END
 else
   set autoindent  " always set autoindenting on
 endif " has("autocmd")
-
-" if has("autocmd")
-"   autocmd bufwritepost .vimrc source $MYVIMRC
-" endif
 
 " zen coding options
 let g:user_zen_settings = {
@@ -189,6 +251,8 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+au FileType javascript set dictionary+=$HOME/.vim/bundle/vim-node/dict/node.dict
 
 au BufWritePost *.haml call HamlMake()
 " Inspired by Mark Hansen's python dependent function
